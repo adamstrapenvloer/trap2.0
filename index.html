@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Adam's Trap & Vloer — Traprenovatie & Vloeren op maat</title>
+  <meta name="description" content="Adam's Trap & Vloer — specialist in traprenovatie en vloeren. PVC, overzettreden, tapijt. Gratis advies aan huis, ook 's avonds en in het weekend." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --beige:#F2EDE4; --beige-mid:#E8DFD0; --beige-dark:#D6CABC;
+      --black:#111; --charcoal:#2A2A2A; --mid:#7A7060; --light:#9A8F80; --white:#FDFBF8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Jost',sans-serif; background:var(--beige); color:var(--black); overflow-x:hidden; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; justify-content:space-between; align-items:center; padding:12px 48px; background:rgba(242,237,228,0.97); backdrop-filter:blur(10px); border-bottom:1px solid var(--beige-dark); }
+    .nav-logo img { height:50px; width:auto; display:block; }
+    .nav-links { display:flex; gap:28px; list-style:none; }
+    .nav-links a { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); text-decoration:none; }
+    .nav-links a:hover { color:var(--black); }
+    .nav-right { display:flex; align-items:center; gap:10px; }
+    .nav-phone { font-size:13px; color:var(--charcoal); text-decoration:none; font-weight:500; }
+    .nav-wa { display:flex; align-items:center; gap:7px; background:#25D366; color:#fff; padding:9px 16px; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; }
+    .nav-wa svg { width:14px; height:14px; fill:#fff; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+    .hamburger span { display:block; width:24px; height:1.5px; background:var(--black); transition:transform 0.3s,opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+    /* MOB MENU */
+    .mob-menu { position:fixed; top:74px; left:0; right:0; background:rgba(242,237,228,0.99); border-bottom:1px solid var(--beige-dark); padding:16px 20px 24px; z-index:190; flex-direction:column; opacity:0; transform:translateY(-8px); transition:opacity 0.3s,transform 0.3s; pointer-events:none; display:none; }
+    .mob-menu.open { display:flex; opacity:1; transform:translateY(0); pointer-events:auto; }
+    .mob-menu a { display:block; padding:13px 0; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--mid); text-decoration:none; border-bottom:1px solid var(--beige-mid); }
+    .mob-actions { display:flex; gap:10px; margin-top:16px; }
+    .mob-phone { flex:1; text-align:center; border:1px solid var(--beige-dark); color:var(--black); padding:13px; font-size:13px; text-decoration:none; border-radius:0; }
+    .mob-wa { flex:1; text-align:center; background:#25D366; color:#fff; padding:13px; font-size:13px; text-transform:uppercase; text-decoration:none; letter-spacing:0.06em; }
+
+    /* SECTIONS */
+    section { padding:90px 48px; }
+    .s-label { display:flex; align-items:center; gap:12px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--light); margin-bottom:14px; }
+    .s-label::before { content:''; width:22px; height:1px; background:var(--beige-dark); }
+    .s-title { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,48px); font-weight:400; line-height:1.15; }
+
+    /* HERO */
+    #hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:74px; }
+    .hero-left { display:flex; flex-direction:column; justify-content:center; padding:64px 56px; }
+    .hero-tag { display:flex; align-items:center; gap:12px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--mid); margin-bottom:28px; }
+    .hero-tag::before { content:''; width:28px; height:1px; background:var(--beige-dark); }
+    .hero-left h1 { font-family:'Playfair Display',serif; font-size:clamp(36px,5vw,66px); font-weight:400; line-height:1.08; margin-bottom:22px; }
+    .hero-left h1 em { font-style:italic; color:var(--mid); }
+    .hero-left p { font-size:15px; color:var(--mid); line-height:1.85; max-width:400px; margin-bottom:36px; font-weight:300; }
+    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-black { background:var(--black); color:var(--beige); padding:14px 26px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; display:inline-block; }
+    .btn-black:hover { background:var(--charcoal); }
+    .btn-ghost { border:1px solid var(--beige-dark); color:var(--black); padding:14px 26px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; display:inline-block; }
+    .btn-ghost:hover { border-color:var(--black); }
+    .hero-right { position:relative; overflow:hidden; }
+    .hero-right img { width:100%; height:100%; object-fit:cover; display:block; }
+    .hero-overlay { position:absolute; inset:0; background:rgba(17,17,17,0.35); pointer-events:none; }
+    .hero-stats { position:absolute; bottom:40px; left:40px; right:40px; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:24px; pointer-events:none; }
+    .hero-stat-num { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; color:var(--beige); line-height:1; margin-bottom:5px; }
+    .hero-stat-label { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(242,237,228,0.5); }
+
+    /* DIENSTEN */
+    #diensten { background:var(--white); }
+    .diensten-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px; gap:24px; flex-wrap:wrap; }
+    .diensten-top p { font-size:15px; color:var(--mid); line-height:1.8; margin-top:14px; font-weight:300; max-width:440px; }
+    .diensten-top-link { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); text-decoration:none; border-bottom:1px solid var(--beige-dark); padding-bottom:2px; white-space:nowrap; }
+    .diensten-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+    .dienst { background:var(--beige); overflow:hidden; transition:background 0.3s; cursor:default; }
+    .dienst-img { width:100%; aspect-ratio:3/4; overflow:hidden; }
+    .dienst-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s; }
+    .dienst:hover .dienst-img img { transform:scale(1.03); }
+    .dienst:hover { background:var(--black); }
+    .dienst:hover .d-num,.dienst:hover .d-title,.dienst:hover .d-text { color:var(--beige); }
+    .dienst:hover .d-line { background:rgba(242,237,228,0.15); }
+    .dienst:hover .d-cta { color:var(--beige-dark); }
+    .dienst-body { padding:24px 24px 32px; }
+    .d-num { font-size:11px; letter-spacing:0.14em; color:var(--light); margin-bottom:14px; transition:color 0.3s; }
+    .d-line { width:22px; height:1px; background:var(--beige-dark); margin-bottom:12px; transition:background 0.3s; }
+    .d-title { font-family:'Playfair Display',serif; font-size:19px; font-weight:400; margin-bottom:9px; transition:color 0.3s; }
+    .d-text { font-size:13px; color:var(--mid); line-height:1.75; transition:color 0.3s; }
+    .d-cta { display:inline-block; margin-top:16px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--charcoal); text-decoration:none; transition:color 0.3s; }
+
+    /* PORTFOLIO */
+    #portfolio { background:var(--white); }
+    .portfolio-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; flex-wrap:wrap; gap:14px; }
+    .portfolio-head a { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); text-decoration:none; border-bottom:1px solid var(--beige-dark); padding-bottom:2px; }
+    .portfolio-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; }
+    .p-item { position:relative; overflow:hidden; aspect-ratio:3/4; }
+    .p-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s; }
+    .p-item:hover img { transform:scale(1.04); }
+    .p-caption { position:absolute; bottom:0; left:0; right:0; padding:12px 14px; font-size:11px; letter-spacing:0.07em; text-transform:uppercase; color:rgba(242,237,228,0.9); background:linear-gradient(transparent,rgba(17,17,17,0.65)); pointer-events:none; }
+
+    /* VOOR NA */
+    #voorna { background:var(--black); padding:90px 48px; }
+    .voorna-head { text-align:center; margin-bottom:48px; }
+    .voorna-head .s-label { justify-content:center; }
+    .voorna-head .s-label::before { display:none; }
+    .voorna-head .s-title { color:var(--beige); }
+    .voorna-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+    .voorna-item { position:relative; overflow:hidden; aspect-ratio:3/4; }
+    .voorna-item img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .voorna-label { position:absolute; top:14px; left:14px; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(242,237,228,0.8); background:rgba(17,17,17,0.5); padding:4px 11px; pointer-events:none; }
+    .voorna-label.na { background:rgba(37,211,102,0.2); color:#4ddd85; }
+    .voorna-caption { padding:12px 16px; background:rgba(242,237,228,0.04); border-top:1px solid rgba(242,237,228,0.06); }
+    .voorna-caption p { font-size:13px; color:rgba(242,237,228,0.45); }
+
+    /* WERKWIJZE */
+    #werkwijze { background:var(--white); }
+    .werkwijze-head { max-width:500px; margin-bottom:48px; }
+    .werkwijze-head p { font-size:15px; color:var(--mid); line-height:1.8; margin-top:14px; font-weight:300; }
+    .werkwijze-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:2px; }
+    .stap { background:var(--beige); padding:32px 22px; transition:background 0.3s; cursor:default; }
+    .stap:hover { background:var(--black); }
+    .stap:hover .stap-num,.stap:hover .stap-title,.stap:hover .stap-text { color:var(--beige); }
+    .stap:hover .stap-line { background:rgba(242,237,228,0.15); }
+    .stap-num { font-size:11px; letter-spacing:0.14em; color:var(--light); margin-bottom:16px; transition:color 0.3s; }
+    .stap-line { width:22px; height:1px; background:var(--beige-dark); margin-bottom:12px; transition:background 0.3s; }
+    .stap-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:400; margin-bottom:9px; transition:color 0.3s; }
+    .stap-text { font-size:13px; color:var(--mid); line-height:1.7; transition:color 0.3s; }
+
+    /* OVER */
+    #over { background:var(--beige); display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+    .over-img { aspect-ratio:3/4; overflow:hidden; }
+    .over-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .over-text p { font-size:15px; color:var(--mid); line-height:1.85; margin-top:16px; font-weight:300; }
+    .over-values { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
+    .over-val { border-left:1px solid var(--beige-dark); padding-left:14px; }
+    .over-val h4 { font-family:'Playfair Display',serif; font-size:14px; font-weight:400; margin-bottom:4px; }
+    .over-val p { font-size:12px; color:var(--light); line-height:1.6; margin:0; }
+
+    /* REVIEWS */
+    #reviews { background:var(--beige); }
+    .reviews-head { max-width:440px; margin-bottom:44px; }
+    .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .review { background:var(--white); padding:28px 24px; border-bottom:2px solid transparent; transition:border-color 0.3s; }
+    .review:hover { border-color:var(--black); }
+    .r-stars { font-size:13px; letter-spacing:3px; margin-bottom:14px; }
+    .r-text { font-size:14px; color:var(--mid); line-height:1.8; font-style:italic; font-weight:300; margin-bottom:18px; }
+    .r-author { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; }
+    .r-place { font-size:11px; color:var(--light); margin-top:2px; }
+
+    /* ADVIES */
+    #advies { background:var(--beige-mid); display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+    .advies-left .s-title { margin-top:12px; margin-bottom:16px; }
+    .advies-left p { font-size:15px; color:var(--mid); line-height:1.85; font-weight:300; margin-bottom:12px; }
+    .advies-steps { margin:20px 0 24px; display:flex; flex-direction:column; gap:12px; }
+    .advies-step { display:flex; gap:12px; align-items:flex-start; }
+    .advies-step-num { width:28px; height:28px; background:var(--black); color:var(--beige); font-size:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .advies-step-text strong { display:block; font-size:13px; font-weight:500; margin-bottom:2px; }
+    .advies-step-text span { font-size:13px; color:var(--mid); }
+    .advies-box { background:var(--white); padding:32px 28px; border:1px solid var(--beige-dark); }
+    .advies-box h4 { font-family:'Playfair Display',serif; font-size:19px; font-weight:400; margin-bottom:6px; }
+    .advies-box-sub { font-size:13px; color:var(--mid); margin-bottom:20px; }
+
+    /* FORMS - all inputs styled universally */
+    .f-label { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--light); margin-bottom:6px; display:block; }
+    .f-group { display:flex; flex-direction:column; margin-bottom:11px; }
+    .f-row { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+    /* Universal input/select/textarea styling */
+    .f-group input,
+    .f-group select,
+    .f-group textarea,
+    .trap-blok input,
+    .trap-blok select {
+      background:var(--beige);
+      border:1px solid var(--beige-dark);
+      padding:13px 12px;
+      font-size:16px;
+      font-family:'Jost',sans-serif;
+      color:var(--black);
+      outline:none;
+      width:100%;
+      border-radius:0;
+      -webkit-appearance:none;
+      appearance:none;
+      transition:border-color 0.2s;
+      display:block;
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+      touch-action:manipulation;
+    }
+    .f-group input:focus,
+    .f-group select:focus,
+    .f-group textarea:focus,
+    .trap-blok input:focus,
+    .trap-blok select:focus { border-color:var(--black); }
+    .f-group textarea { resize:vertical; min-height:95px; }
+    input[type="hidden"] { display:none !important; }
+    .f-submit {
+      background:var(--black); color:var(--beige);
+      padding:15px 28px; font-size:13px; letter-spacing:0.12em;
+      text-transform:uppercase; border:none; cursor:pointer;
+      font-family:'Jost',sans-serif; width:100%; margin-top:6px;
+      min-height:52px; display:block;
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+      touch-action:manipulation;
+      -webkit-appearance:none;
+    }
+    .f-submit:hover { background:var(--charcoal); }
+    .f-akkoord { font-size:12px; color:var(--mid); line-height:1.6; margin:8px 0 4px; }
+    .f-akkoord a { color:var(--black); text-decoration:underline; }
+    .f-success { display:none; margin-top:12px; font-size:14px; color:var(--mid); line-height:1.6; padding:14px; background:var(--beige); border:1px solid var(--beige-dark); }
+    .trap-sectie { background:var(--beige-mid); padding:14px; border:1px solid var(--beige-dark); margin-bottom:11px; }
+    .trap-sectie-info { font-size:12px; color:var(--mid); margin-bottom:11px; }
+    .trap-blok { margin-bottom:11px; padding-bottom:11px; border-bottom:1px solid var(--beige-dark); }
+    .trap-blok-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+    .trap-blok-titel { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--light); }
+    .trap-remove { background:none; border:none; color:var(--light); cursor:pointer; font-size:22px; line-height:1; padding:0; touch-action:manipulation; }
+    .trap-toevoegen { background:none; border:1px solid var(--beige-dark); color:var(--mid); padding:12px 16px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; width:100%; min-height:48px; touch-action:manipulation; margin-top:8px; display:block; }
+
+    /* CONTACT */
+    #contact { background:var(--white); display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+    .contact-left p { font-size:15px; color:var(--mid); line-height:1.85; margin-top:16px; margin-bottom:32px; font-weight:300; }
+    .c-detail { display:flex; gap:12px; align-items:center; margin-bottom:14px; }
+    .c-icon { width:38px; height:38px; background:var(--beige); border:1px solid var(--beige-dark); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+    .c-info strong { display:block; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2px; }
+    .c-info a,.c-info span { font-size:14px; color:var(--mid); text-decoration:none; }
+    .c-info a:hover { color:var(--black); }
+
+    /* FOOTER */
+    footer { background:var(--black); padding:36px 48px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+    .f-logo img { height:42px; width:auto; filter:invert(1); opacity:0.85; }
+    footer p { font-size:11px; color:rgba(242,237,228,0.3); }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+    .footer-links a { font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(242,237,228,0.35); text-decoration:none; }
+    .footer-links a:hover { color:var(--beige); }
+
+    /* WA WIDGET - completely isolated, no overlap */
+    .wa-widget { position:fixed; bottom:20px; right:20px; z-index:300; display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
+    .wa-bubble { background:var(--white); border:1px solid var(--beige-dark); padding:14px 16px; max-width:220px; box-shadow:0 4px 20px rgba(0,0,0,0.1); font-size:13px; color:var(--charcoal); line-height:1.5; display:none; position:relative; }
+    .wa-bubble.show { display:block; }
+    .wa-bubble strong { display:block; font-size:13px; margin-bottom:4px; padding-right:20px; }
+    .wa-close { position:absolute; top:8px; right:10px; background:none; border:none; cursor:pointer; font-size:20px; color:var(--light); line-height:1; padding:0; touch-action:manipulation; }
+    .wa-btn { width:52px; height:52px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 14px rgba(37,211,102,0.35); text-decoration:none; position:relative; touch-action:manipulation; }
+    .wa-btn svg { width:25px; height:25px; fill:#fff; pointer-events:none; }
+    .wa-badge { position:absolute; top:-3px; right:-3px; width:16px; height:16px; background:#e53935; border-radius:50%; font-size:10px; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; pointer-events:none; }
+
+    /* FADE */
+    .fade { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease,transform 0.55s ease; }
+    .fade.in { opacity:1; transform:translateY(0); }
+
+    /* MOBILE */
+    @media (max-width:960px) {
+      nav { padding:10px 16px; }
+      .nav-links,.nav-phone,.nav-wa { display:none; }
+      .hamburger { display:flex; }
+      section { padding:56px 16px; }
+      #hero { grid-template-columns:1fr; min-height:auto; padding-top:74px; }
+      .hero-left { padding:44px 16px 32px; }
+      .hero-right { height:280px; }
+      .hero-btns { flex-direction:column; }
+      .btn-black,.btn-ghost { text-align:center; padding:15px 20px; font-size:12px; }
+      .diensten-grid { grid-template-columns:1fr; }
+      .portfolio-grid { grid-template-columns:1fr 1fr; gap:4px; }
+      .voorna-grid { grid-template-columns:1fr 1fr; gap:4px; }
+      .werkwijze-grid { grid-template-columns:1fr; }
+      #over { grid-template-columns:1fr; gap:32px; }
+      .over-img { aspect-ratio:4/3; }
+      .reviews-grid { grid-template-columns:1fr; gap:12px; }
+      #advies { grid-template-columns:1fr; gap:32px; }
+      .advies-box { padding:20px 14px; }
+      #contact { grid-template-columns:1fr; gap:32px; }
+      .f-row { grid-template-columns:1fr; }
+      footer { flex-direction:column; text-align:center; padding:28px 16px; }
+      .footer-links { justify-content:center; }
+      /* Extra bottom padding so WA button never blocks submit */
+      #advies, #contact { padding-bottom:90px; }
+      .over-values { grid-template-columns:1fr; }
+    }
+    @media (max-width:480px) {
+      .portfolio-grid { grid-template-columns:1fr 1fr; }
+      .voorna-grid { grid-template-columns:1fr; }
+      .hero-stats { bottom:24px; left:24px; right:24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="logo-transparent.png" alt="Adam's Trap & Vloer" /></a>
+  <ul class="nav-links">
+    <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#portfolio">Projecten</a></li>
+    <li><a href="#werkwijze">Werkwijze</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#advies">Gratis advies</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:0631210991" class="nav-phone">06 31 21 09 91</a>
+    <a href="https://wa.me/310631210991" target="_blank" class="nav-wa">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.11 1.522 5.84L.057 23.486a.5.5 0 0 0 .614.614l5.636-1.474A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.868 9.868 0 0 1-5.031-1.378l-.36-.214-3.733.976.999-3.648-.235-.374A9.867 9.867 0 0 1 2.118 12C2.118 6.533 6.533 2.118 12 2.118c5.468 0 9.882 4.415 9.882 9.882 0 5.468-4.414 9.882-9.882 9.882z"/></svg>
+      WhatsApp
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="#diensten" class="mob-link">Diensten</a>
+  <a href="#portfolio" class="mob-link">Projecten</a>
+  <a href="#werkwijze" class="mob-link">Werkwijze</a>
+  <a href="#reviews" class="mob-link">Reviews</a>
+  <a href="#advies" class="mob-link">Gratis advies</a>
+  <a href="#contact" class="mob-link">Contact</a>
+  <div class="mob-actions">
+    <a href="tel:0631210991" class="mob-phone">📞 06 31 21 09 91</a>
+    <a href="https://wa.me/310631210991" target="_blank" class="mob-wa">💬 WhatsApp</a>
+  </div>
+</div>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag fade">Traprenovatie &amp; Vloeren op maat</div>
+    <h1 class="fade">Een nieuwe<br />beleving bij<br /><em>elke stap.</em></h1>
+    <p class="fade">Jouw trap is meer dan een verbinding tussen verdiepingen. Het is een beleving — van licht, sfeer en gevoel. Wij maken van elke renovatie iets waar je elke dag met plezier langs loopt.</p>
+    <div class="hero-btns fade">
+      <a href="#contact" class="btn-black">Offerte aanvragen</a>
+      <a href="#advies" class="btn-ghost">📅 Gratis advies aan huis</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="hero.jpeg" alt="Traprenovatie" />
+    <div class="hero-overlay"></div>
+    <div class="hero-stats fade">
+      <div><div class="hero-stat-num">500+</div><div class="hero-stat-label">Projecten afgerond</div></div>
+      <div><div class="hero-stat-num">1 dag</div><div class="hero-stat-label">Renovatietijd</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="diensten">
+  <div class="diensten-top fade">
+    <div>
+      <div class="s-label">Wat wij doen</div>
+      <h2 class="s-title">Elk type trap,<br />elke oplossing.</h2>
+      <p>Elke trap heeft zijn eigen karakter. Wij luisteren naar jouw wensen en adviseren de oplossing die het beste past bij jouw interieur, budget en trap.</p>
+    </div>
+    <a href="#contact" class="diensten-top-link">Neem contact op →</a>
+  </div>
+  <div class="diensten-grid">
+    <div class="dienst fade">
+      <div class="dienst-img"><img src="dienst-traprenovatie.jpeg" alt="Traprenovatie" /></div>
+      <div class="dienst-body">
+        <div class="d-num">01</div><div class="d-line"></div>
+        <h3 class="d-title">Traprenovatie</h3>
+        <p class="d-text">Wij renoveren elke trap op maat — dicht of open. Kies uit PVC, overzettreden of tapijt. Optioneel uit te breiden met LED sensorverlichting.</p>
+        <a href="#contact" class="d-cta">→ Offerte aanvragen</a>
+      </div>
+    </div>
+    <div class="dienst fade">
+      <div class="dienst-img"><img src="dienst-vloeren.jpeg" alt="Vloeren" /></div>
+      <div class="dienst-body">
+        <div class="d-num">02</div><div class="d-line"></div>
+        <h3 class="d-title">Vloeren</h3>
+        <p class="d-text">Van PVC (plak of click) tot laminaat of tapijt — wij leggen elke vloer vakkundig. Inclusief egaliseren waar nodig.</p>
+        <a href="#contact" class="d-cta">→ Offerte aanvragen</a>
+      </div>
+    </div>
+    <div class="dienst fade">
+      <div class="dienst-img"><img src="dienst-opentrap.jpeg" alt="Open trap dichtmaken" /></div>
+      <div class="dienst-body">
+        <div class="d-num">03</div><div class="d-line"></div>
+        <h3 class="d-title">Open trap dichtmaken</h3>
+        <p class="d-text">Een open trap dichtmaken geeft rust en veiligheid. Na het plaatsen van stootborden bekleden wij de trap naar keuze met PVC, overzettreden of tapijt.</p>
+        <a href="#contact" class="d-cta">→ Offerte aanvragen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="portfolio-head fade">
+    <div>
+      <div class="s-label">Onze projecten</div>
+      <h2 class="s-title">Elke trede,<br />een nieuw gevoel.</h2>
+    </div>
+    <a href="https://www.instagram.com/adams_trapenvloer" target="_blank">Volg ons op Instagram →</a>
+  </div>
+  <div class="portfolio-grid">
+    <div class="p-item fade"><img src="portfolio-1.jpeg" alt="Overzettreden LED" /><span class="p-caption">Overzettreden + LED</span></div>
+    <div class="p-item fade"><img src="portfolio-6.jpeg" alt="Overzettreden open trap" /><span class="p-caption">Overzettreden open trap</span></div>
+    <div class="p-item fade"><img src="portfolio-3.jpeg" alt="PVC houtlook" /><span class="p-caption">PVC houtlook</span></div>
+    <div class="p-item fade"><img src="portfolio-2.jpeg" alt="PVC betonlook" /><span class="p-caption">PVC betonlook</span></div>
+    <div class="p-item fade"><img src="portfolio-4.jpeg" alt="PVC open trap" /><span class="p-caption">PVC open trap</span></div>
+    <div class="p-item fade"><img src="portfolio-8.jpeg" alt="Tapijt trap" /><span class="p-caption">Tapijt + visgraatvloer</span></div>
+    <div class="p-item fade"><img src="portfolio-7.jpeg" alt="Open trap dichtgemaakt" /><span class="p-caption">Open trap dichtgemaakt</span></div>
+  </div>
+</section>
+
+<section id="voorna">
+  <div class="voorna-head fade">
+    <div class="s-label">Transformaties</div>
+    <h2 class="s-title">Het verschil dat één dag maakt.</h2>
+  </div>
+  <div class="voorna-grid">
+    <div class="voorna-item fade"><img src="voor-1.jpeg" alt="Voor renovatie" /><span class="voorna-label">Voor</span><div class="voorna-caption"><p>Verouderde trap — vuil en gedateerd</p></div></div>
+    <div class="voorna-item fade"><img src="na-1.jpeg" alt="Na renovatie" /><span class="voorna-label na">Na</span><div class="voorna-caption"><p>Overzettreden houtlook + LED</p></div></div>
+    <div class="voorna-item fade"><img src="voor-2.jpeg" alt="Voor renovatie 2" /><span class="voorna-label">Voor</span><div class="voorna-caption"><p>Kwartslag trap — versleten</p></div></div>
+    <div class="voorna-item fade"><img src="na-2.jpeg" alt="Na renovatie 2" /><span class="voorna-label na">Na</span><div class="voorna-caption"><p>PVC houtlook + LED</p></div></div>
+  </div>
+</section>
+
+<section id="werkwijze">
+  <div class="werkwijze-head fade">
+    <div class="s-label">Onze werkwijze</div>
+    <h2 class="s-title">Van eerste contact<br />tot laatste trede.</h2>
+    <p>Wij maken het proces eenvoudig en transparant — van het eerste contact tot de afwerking van de laatste trede.</p>
+  </div>
+  <div class="werkwijze-grid">
+    <div class="stap fade"><div class="stap-num">01</div><div class="stap-line"></div><h3 class="stap-title">Offerte aanvragen</h3><p class="stap-text">Bel, WhatsApp of stuur een bericht. Wij reageren snel en vrijblijvend.</p></div>
+    <div class="stap fade"><div class="stap-num">02</div><div class="stap-line"></div><h3 class="stap-title">Gratis advies aan huis</h3><p class="stap-text">Onze expert komt gratis bij je langs met kleurstalen en meet alles op.</p></div>
+    <div class="stap fade"><div class="stap-num">03</div><div class="stap-line"></div><h3 class="stap-title">Keuze maken</h3><p class="stap-text">Jij kiest de kleur en stijl die perfect past — in alle rust, zonder druk.</p></div>
+    <div class="stap fade"><div class="stap-num">04</div><div class="stap-line"></div><h3 class="stap-title">Planning</h3><p class="stap-text">We stemmen samen de datum af. Flexibel en op jouw tempo.</p></div>
+    <div class="stap fade"><div class="stap-num">05</div><div class="stap-line"></div><h3 class="stap-title">Installatie</h3><p class="stap-text">Vakkundige afwerking. Binnen één dag is jouw trap of vloer vernieuwd.</p></div>
+  </div>
+</section>
+
+<section id="over">
+  <div class="over-img fade"><img src="over-ons.jpeg" alt="Adam's Trap en Vloer aan het werk" /></div>
+  <div class="over-text fade">
+    <div class="s-label">Over ons</div>
+    <h2 class="s-title">Vakmanschap<br />zonder compromis.</h2>
+    <p>Bij Adam's Trap &amp; Vloer werken we al meer dan 30 jaar dagelijks aan trappen en vloeren. Niet als bijzaak, maar als specialisme. Ons team kent het vak door en door.</p>
+    <p>Wij komen gratis bij je thuis met alle kleurstalen, zodat jij ze kunt bekijken in jouw eigen licht en ruimte. Ook in de avonden en het weekend beschikbaar.</p>
+    <p>Eerlijk vakmanschap, eerlijke prijzen. Dat is waar wij elke dag voor staan.</p>
+    <div class="over-values">
+      <div class="over-val"><h4>30+ jaar ervaring</h4><p>Dagelijks gespecialiseerd in trappen en vloeren.</p></div>
+      <div class="over-val"><h4>Gratis advies aan huis</h4><p>Kleurstalen in jouw eigen licht bekijken.</p></div>
+      <div class="over-val"><h4>7 dagen per week</h4><p>Ook 's avonds en in het weekend.</p></div>
+      <div class="over-val"><h4>Persoonlijk contact</h4><p>Direct via WhatsApp met onze adviseurs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="reviews-head fade">
+    <div class="s-label">Klantreviews</div>
+    <h2 class="s-title">Wat onze klanten zeggen.</h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review fade"><div class="r-stars">★★★★★</div><p class="r-text">"Onze trap zag er jarenlang verouderd uit. Na de renovatie lijkt het een compleet andere woning. In één dag perfect geregeld."</p><div class="r-author">Klant uit Utrecht</div></div>
+    <div class="review fade"><div class="r-stars">★★★★★</div><p class="r-text">"Vakmanschap op hoog niveau. Het team werkt snel, netjes en laat alles perfect achter. Zonder twijfel een aanrader."</p><div class="r-author">Klant uit Amsterdam</div></div>
+    <div class="review fade"><div class="r-stars">★★★★★</div><p class="r-text">"We twijfelden over overzettreden maar het resultaat heeft ons volledig overtuigd. Mooi, snel en betaalbaar. Top!"</p><div class="r-author">Klant uit Rotterdam</div></div>
+  </div>
+</section>
+
+<section id="advies">
+  <div class="advies-left fade">
+    <div class="s-label">Gratis advies</div>
+    <h2 class="s-title">Gratis kleuradvies<br />bij jou thuis.</h2>
+    <p>Wil je zeker weten welke trap- of vloerkleur perfect past bij jouw interieur? Onze experts komen gratis bij je langs met kleurstalen — je hoeft niet naar de showroom.</p>
+    <div class="advies-steps">
+      <div class="advies-step"><div class="advies-step-num">1</div><div class="advies-step-text"><strong>Kies een moment</strong><span>Vul het formulier in — op jouw eigen tempo.</span></div></div>
+      <div class="advies-step"><div class="advies-step-num">2</div><div class="advies-step-text"><strong>Wij nemen contact op</strong><span>We bevestigen en sturen een offerte op maat.</span></div></div>
+      <div class="advies-step"><div class="advies-step-num">3</div><div class="advies-step-text"><strong>Wij komen bij jou langs</strong><span>Kleurstalen mee, alles opmeten en planning bespreken.</span></div></div>
+    </div>
+  </div>
+  <div class="advies-box fade">
+    <h4>Plan een gratis adviesgesprek</h4>
+    <div class="advies-box-sub">Wij nemen binnen 24 uur contact op</div>
+    <form id="adviesForm" action="https://api.web3forms.com/submit" method="POST" autocomplete="on">
+      <input type="hidden" name="access_key" value="1dbef0d2-ff06-40a9-b816-2dc6710da844" />
+      <input type="hidden" name="subject" value="Gratis adviesgesprek aanvraag — Adam's Trap &amp; Vloer" />
+      <input type="hidden" name="redirect" value="false" />
+      <input type="checkbox" name="botcheck" style="display:none;" />
+
+      <div class="f-group">
+        <label class="f-label" for="a-naam">Naam *</label>
+        <input id="a-naam" type="text" name="naam" placeholder="Voor- en achternaam" required autocomplete="name" />
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="a-tel">Telefoonnummer *</label>
+        <input id="a-tel" type="tel" name="telefoon" placeholder="06 00 000 000" required autocomplete="tel" />
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="a-email">E-mailadres *</label>
+        <input id="a-email" type="email" name="email" placeholder="jij@email.nl" required autocomplete="email" />
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="a-adres">Adres *</label>
+        <input id="a-adres" type="text" name="adres" placeholder="Straat, huisnummer, woonplaats" required autocomplete="street-address" />
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="a-interesse">Waarvoor wilt u een adviesgesprek? *</label>
+        <select id="a-interesse" name="interesse" onchange="toonVelden(this.value)">
+          <option value="">Maak een keuze</option>
+          <option value="trap">Traprenovatie</option>
+          <option value="vloer">Vloer</option>
+          <option value="beide">Trap + Vloer</option>
+        </select>
+      </div>
+
+      <div id="trapVelden" style="display:none;">
+        <div class="trap-sectie">
+          <p class="trap-sectie-info">Vul per trap de gegevens in. Meerdere trappen? Gebruik de knop hieronder.</p>
+          <div id="trapContainer">
+            <div class="trap-blok" id="trap-1">
+              <div class="trap-blok-header">
+                <span class="trap-blok-titel">Trap 1</span>
+              </div>
+              <div class="f-group">
+                <label class="f-label" for="type-trap-1">Type trap</label>
+                <select id="type-trap-1" name="type_trap_1" onchange="checkLed(1)">
+                  <option value="">Kies type</option>
+                  <option value="dicht">Dichte trap</option>
+                  <option value="open">Open trap</option>
+                </select>
+              </div>
+              <div class="f-group">
+                <label class="f-label" for="treden-1">Aantal treden</label>
+                <select id="treden-1" name="treden_1">
+                  <option value="">Kies aantal</option>
+                  <option>12 treden</option><option>13 treden</option><option>14 treden</option>
+                  <option>15 treden</option><option>16 treden</option>
+                  <option>Meer dan 16 treden</option><option>Weet ik niet</option>
+                </select>
+              </div>
+              <div class="f-group">
+                <label class="f-label" for="bekleding-1">Gewenste bekleding</label>
+                <select id="bekleding-1" name="bekleding_1" onchange="checkLed(1)">
+                  <option value="">Kies bekleding</option>
+                  <option value="pvc">PVC</option>
+                  <option value="overzettreden">Overzettreden</option>
+                  <option value="tapijt">Tapijt</option>
+                  <option value="weet_niet">Weet ik nog niet</option>
+                </select>
+              </div>
+              <div class="f-group" id="led-1" style="display:none;">
+                <label class="f-label" for="led-keuze-1">LED sensorverlichting gewenst?</label>
+                <select id="led-keuze-1" name="led_1">
+                  <option value="">Kies optie</option>
+                  <option>Ja, graag</option>
+                  <option>Nee, niet nodig</option>
+                  <option>Weet ik nog niet</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="trap-toevoegen" onclick="voegTrapToe()">+ Nog een trap toevoegen</button>
+        </div>
+      </div>
+
+      <div id="vloerVelden" style="display:none;">
+        <div class="f-group">
+          <label class="f-label" for="type-vloer">Type vloer</label>
+          <select id="type-vloer" name="type_vloer" onchange="checkLegpatroon(this.value)">
+            <option value="">Kies type vloer</option>
+            <option value="pvc_plak">PVC — plak</option>
+            <option value="pvc_click">PVC — click</option>
+            <option value="laminaat">Laminaat</option>
+            <option value="tapijt">Tapijt</option>
+            <option value="weet_niet">Weet ik nog niet</option>
+          </select>
+        </div>
+        <div class="f-group" id="legpatroonVeld" style="display:none;">
+          <label class="f-label" for="legpatroon">Legpatroon</label>
+          <select id="legpatroon" name="legpatroon">
+            <option value="">Kies patroon</option>
+            <option>Visgraat</option>
+            <option>Rechte stroken</option>
+            <option>Weet ik nog niet</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label class="f-label" for="oppervlak">Geschat oppervlak</label>
+          <input id="oppervlak" type="text" name="oppervlak" placeholder="bijv. 35 m²" />
+        </div>
+      </div>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-label" for="a-dag">Voorkeursdag</label>
+          <select id="a-dag" name="voorkeursdag">
+            <option value="">Kies dag</option>
+            <option>Maandag</option><option>Dinsdag</option><option>Woensdag</option>
+            <option>Donderdag</option><option>Vrijdag</option><option>Zaterdag</option><option>Zondag</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label class="f-label" for="a-dagdeel">Dagdeel</label>
+          <select id="a-dagdeel" name="dagdeel">
+            <option value="">Kies dagdeel</option>
+            <option>Ochtend (9:00–12:00)</option>
+            <option>Middag (12:00–17:00)</option>
+            <option>Avond (17:00–21:00)</option>
+          </select>
+        </div>
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="a-bericht">Aanvullende informatie (optioneel)</label>
+        <textarea id="a-bericht" name="bericht" placeholder="Vertel ons meer over uw wensen..."></textarea>
+      </div>
+      <p style="font-size:12px;color:var(--mid);line-height:1.65;margin:6px 0 2px;">💡 <em>Tip: Zorg dat de meebeslissende partner ook aanwezig is!</em></p>
+      <p style="font-size:12px;color:var(--mid);line-height:1.65;margin-bottom:8px;">📅 <em>Beschikbaar maandag t/m zondag, ook in de avonden.</em></p>
+      <p class="f-akkoord">Door dit formulier te verzenden ga je akkoord met ons <a href="privacy.html">privacybeleid</a> en <a href="voorwaarden.html">algemene voorwaarden</a>.</p>
+      <button type="submit" class="f-submit" id="adviesBtn">Adviesgesprek aanvragen →</button>
+      <div class="f-success" id="adviesSuccess">✓ Bedankt! Wij nemen binnen 24 uur contact met je op om de afspraak te bevestigen.</div>
+    </form>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-left fade">
+    <div class="s-label">Contact</div>
+    <h2 class="s-title">Neem contact<br />met ons op.</h2>
+    <p>Vul het formulier in en wij nemen binnen 24 uur contact met je op. Liever direct? Bel of WhatsApp ons gerust.</p>
+    <div class="c-detail"><div class="c-icon">📞</div><div class="c-info"><strong>Bel of app</strong><a href="tel:0631210991">06 31 21 09 91</a></div></div>
+    <div class="c-detail"><div class="c-icon">✉️</div><div class="c-info"><strong>E-mail</strong><a href="mailto:info.adamstrapenvloer@gmail.com">info.adamstrapenvloer@gmail.com</a></div></div>
+    <div class="c-detail"><div class="c-icon">📸</div><div class="c-info"><strong>Instagram</strong><a href="https://www.instagram.com/adams_trapenvloer" target="_blank">@adams_trapenvloer</a></div></div>
+  </div>
+  <div class="fade">
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" autocomplete="on">
+      <input type="hidden" name="access_key" value="1dbef0d2-ff06-40a9-b816-2dc6710da844" />
+      <input type="hidden" name="subject" value="Offerte aanvraag — Adam's Trap &amp; Vloer" />
+      <input type="hidden" name="redirect" value="false" />
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-label" for="c-voor">Voornaam</label>
+          <input id="c-voor" type="text" name="voornaam" placeholder="Jan" required autocomplete="given-name" />
+        </div>
+        <div class="f-group">
+          <label class="f-label" for="c-achter">Achternaam</label>
+          <input id="c-achter" type="text" name="achternaam" placeholder="de Vries" required autocomplete="family-name" />
+        </div>
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="c-email">E-mailadres</label>
+        <input id="c-email" type="email" name="email" placeholder="jij@email.nl" required autocomplete="email" />
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="c-tel">Telefoonnummer</label>
+        <input id="c-tel" type="tel" name="telefoon" placeholder="06 00 000 000" required autocomplete="tel" />
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="c-dienst">Gewenste dienst</label>
+        <select id="c-dienst" name="dienst" required>
+          <option value="">Maak een keuze</option>
+          <option>Traprenovatie — PVC</option>
+          <option>Traprenovatie — Overzettreden</option>
+          <option>Traprenovatie — Tapijt</option>
+          <option>Open trap dichtmaken</option>
+          <option>Vloerwerk — PVC</option>
+          <option>Vloerwerk — Laminaat</option>
+          <option>Vloerwerk — Tapijt</option>
+          <option>Combinatie / weet ik nog niet</option>
+        </select>
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="c-bericht">Bericht (optioneel)</label>
+        <textarea id="c-bericht" name="bericht" placeholder="Vertel iets over uw trap of vloer, wensen..."></textarea>
+      </div>
+      <p class="f-akkoord">Door dit formulier te verzenden ga je akkoord met ons <a href="privacy.html">privacybeleid</a> en <a href="voorwaarden.html">algemene voorwaarden</a>.</p>
+      <button type="submit" class="f-submit" id="contactBtn">Offerte aanvragen →</button>
+      <div class="f-success" id="contactSuccess">✓ Bedankt! Wij nemen binnen 24 uur contact met je op.</div>
+    </form>
+  </div>
+</section>
+
+<div class="wa-widget" id="waWidget">
+  <div class="wa-bubble" id="waBubble">
+    <button class="wa-close" id="waClose" aria-label="Sluiten">×</button>
+    <strong>👋 Hoi! Kan ik je helpen?</strong>
+    Stuur ons een berichtje — we reageren snel!
+  </div>
+  <a href="https://wa.me/310631210991?text=Hoi%2C%20ik%20heb%20een%20vraag." target="_blank" class="wa-btn" id="waBtn">
+    <div class="wa-badge" id="waBadge">1</div>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.11 1.522 5.84L.057 23.486a.5.5 0 0 0 .614.614l5.636-1.474A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.868 9.868 0 0 1-5.031-1.378l-.36-.214-3.733.976.999-3.648-.235-.374A9.867 9.867 0 0 1 2.118 12C2.118 6.533 6.533 2.118 12 2.118c5.468 0 9.882 4.415 9.882 9.882 0 5.468-4.414 9.882-9.882 9.882z"/></svg>
+  </a>
+</div>
+
+<footer>
+  <a href="index.html" class="f-logo"><img src="logo-transparent.png" alt="Adam's Trap & Vloer" /></a>
+  <p>© 2026 Adam's Trap &amp; Vloer — Alle rechten voorbehouden</p>
+  <div class="footer-links">
+    <a href="privacy.html">Privacybeleid</a>
+    <a href="voorwaarden.html">Voorwaarden</a>
+    <a href="https://www.instagram.com/adams_trapenvloer" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com" target="_blank">Facebook</a>
+  </div>
+</footer>
+
+<script>
+// Scroll fade
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('in'),i*55); });
+}, {threshold:0.07});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobMenu = document.getElementById('mobMenu');
+hamburger.addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  hamburger.classList.toggle('open');
+  mobMenu.classList.toggle('open');
+});
+hamburger.addEventListener('touchend', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  hamburger.classList.toggle('open');
+  mobMenu.classList.toggle('open');
+});
+document.querySelectorAll('.mob-link').forEach(function(l) {
+  l.addEventListener('click', function() {
+    hamburger.classList.remove('open');
+    mobMenu.classList.remove('open');
+  });
+});
+document.addEventListener('click', function(e) {
+  if(mobMenu.classList.contains('open') && !mobMenu.contains(e.target) && !hamburger.contains(e.target)) {
+    hamburger.classList.remove('open');
+    mobMenu.classList.remove('open');
+  }
+});
+
+// Form fields visibility
+function toonVelden(val) {
+  document.getElementById('trapVelden').style.display = (val==='trap'||val==='beide') ? 'block' : 'none';
+  document.getElementById('vloerVelden').style.display = (val==='vloer'||val==='beide') ? 'block' : 'none';
+}
+function checkLed(nr) {
+  var type = document.getElementById('type-trap-'+nr);
+  var bekleding = document.getElementById('bekleding-'+nr);
+  var led = document.getElementById('led-'+nr);
+  if(!type||!bekleding||!led) return;
+  var showLed = type.value==='dicht' && bekleding.value!=='' && bekleding.value!=='tapijt' && bekleding.value!=='weet_niet';
+  led.style.display = showLed ? 'block' : 'none';
+}
+function checkLegpatroon(val) {
+  var lp = document.getElementById('legpatroonVeld');
+  if(lp) lp.style.display = (val&&val!=='tapijt'&&val!=='weet_niet') ? 'block' : 'none';
+}
+
+// Add extra trap
+var trapTeller = 1;
+function voegTrapToe() {
+  trapTeller++;
+  var n = trapTeller;
+  var container = document.getElementById('trapContainer');
+  var div = document.createElement('div');
+  div.className = 'trap-blok';
+  div.id = 'trap-'+n;
+  div.innerHTML =
+    '<div class="trap-blok-header">' +
+      '<span class="trap-blok-titel">Trap '+n+'</span>' +
+      '<button type="button" class="trap-remove" onclick="document.getElementById(\'trap-'+n+'\').remove()">×</button>' +
+    '</div>' +
+    '<div class="f-group"><label class="f-label">Type trap</label>' +
+      '<select id="type-trap-'+n+'" name="type_trap_'+n+'" onchange="checkLed('+n+')">' +
+        '<option value="">Kies type</option><option value="dicht">Dichte trap</option><option value="open">Open trap</option>' +
+      '</select></div>' +
+    '<div class="f-group"><label class="f-label">Aantal treden</label>' +
+      '<select name="treden_'+n+'">' +
+        '<option value="">Kies aantal</option>' +
+        '<option>12 treden</option><option>13 treden</option><option>14 treden</option>' +
+        '<option>15 treden</option><option>16 treden</option>' +
+        '<option>Meer dan 16 treden</option><option>Weet ik niet</option>' +
+      '</select></div>' +
+    '<div class="f-group"><label class="f-label">Gewenste bekleding</label>' +
+      '<select id="bekleding-'+n+'" name="bekleding_'+n+'" onchange="checkLed('+n+')">' +
+        '<option value="">Kies bekleding</option>' +
+        '<option value="pvc">PVC</option><option value="overzettreden">Overzettreden</option>' +
+        '<option value="tapijt">Tapijt</option><option value="weet_niet">Weet ik nog niet</option>' +
+      '</select></div>' +
+    '<div class="f-group" id="led-'+n+'" style="display:none;"><label class="f-label">LED sensorverlichting?</label>' +
+      '<select name="led_'+n+'">' +
+        '<option value="">Kies optie</option>' +
+        '<option>Ja, graag</option><option>Nee, niet nodig</option><option>Weet ik nog niet</option>' +
+      '</select></div>';
+  container.appendChild(div);
+}
+
+// Form submit handlers
+function submitForm(formId, btnId, successId) {
+  var form = document.getElementById(formId);
+  var btn = document.getElementById(btnId);
+  var success = document.getElementById(successId);
+  if(!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Extra validation for advies form
+    if(formId === 'adviesForm') {
+      var interesse = document.getElementById('a-interesse');
+      if(!interesse || !interesse.value) {
+        interesse.style.borderColor = '#c0392b';
+        interesse.focus();
+        setTimeout(function(){ interesse.style.borderColor = ''; }, 2000);
+        return;
+      }
+    }
+    var orig = btn.textContent;
+    btn.textContent = 'Versturen...';
+    btn.disabled = true;
+    var data = new FormData(form);
+    fetch('https://api.web3forms.com/submit', {method:'POST', body:data})
+      .then(function(r){return r.json();})
+      .then(function(json){
+        if(json.success) {
+          form.style.display='none';
+          success.style.display='block';
+        } else {
+          console.log('Web3Forms error:', json);
+          btn.textContent='Probeer opnieuw';
+          btn.disabled=false;
+        }
+      })
+      .catch(function(err){
+        console.log('Fetch error:', err);
+        btn.textContent='Probeer opnieuw';
+        btn.disabled=false;
+      });
+  });
+}
+submitForm('adviesForm','adviesBtn','adviesSuccess');
+submitForm('contactForm','contactBtn','contactSuccess');
+
+// WA bubble
+setTimeout(function(){
+  document.getElementById('waBubble').classList.add('show');
+}, 5000);
+document.getElementById('waClose').addEventListener('click', function(e){
+  e.stopPropagation();
+  document.getElementById('waBubble').classList.remove('show');
+  document.getElementById('waBadge').style.display='none';
+});
+document.getElementById('waBtn').addEventListener('click', function(){
+  document.getElementById('waBubble').classList.remove('show');
+  document.getElementById('waBadge').style.display='none';
+});
+</script>
+</body>
+</html>
